@@ -1,0 +1,15 @@
+<app-navbar></app-navbar>
+<div class="home-container">
+  <h1>Welcome to Car Rental</h1>
+
+  <div class="car-list">
+    <div *ngFor="let car of cars" class="car-card">
+      <img [src]="car.image" alt="{{ car.name }}" />
+      <div class="car-details">
+        <h2>{{ car.name }}</h2>
+        <p>Price: ${{ car.price }} per day</p>
+        <button (click)="addToCart(car)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
