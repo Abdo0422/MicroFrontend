@@ -10,8 +10,8 @@ const routes: Routes = [
     path: 'Home',
     loadChildren: () =>
       loadRemoteModule({
-        remoteEntry: "manifest",
-        remoteName: "remoteApp",
+        remoteEntry: "home",
+        remoteName: "homeApp",
         exposedModule: "./HomeModule"
       })
       .then(m => m.HomeModule)
@@ -22,13 +22,13 @@ const routes: Routes = [
  },
  {
   path: 'login',
-  loadComponent: () =>
+  loadChildren: () =>
     loadRemoteModule({
       remoteEntry: "manifest",
-      remoteName: "remoteApp",
-      exposedModule: "./LoginComponent"
+      remoteName: "loginApp",
+      exposedModule: "./LoginModule"
     })
-    .then(m => m.LoginComponent)
+    .then(m => m.LoginModule)
     .catch(err => {
       console.error('Error loading component:', err);
       alert('Error loading component: ' + JSON.stringify(err, null, 2));
@@ -36,13 +36,13 @@ const routes: Routes = [
 },
 {
   path: 'cart',
-  loadComponent: () =>
+  loadChildren: () =>
     loadRemoteModule({
       remoteEntry: "manifest",
-      remoteName: "remoteApp",
-      exposedModule: "./CartComponent"
+      remoteName: "cartApp",
+      exposedModule: "./CartModule"
     })
-    .then(m => m.CartComponent)
+    .then(m => m.CartModule)
     .catch(err => {
       console.error('Error loading component:', err);
       alert('Error loading component: ' + JSON.stringify(err, null, 2));

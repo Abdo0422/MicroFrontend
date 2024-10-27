@@ -1,13 +1,54 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { CartComponent } from './cart/cart.component';
+import { loadRemoteModule } from '@angular-architects/module-federation';
 
 const routes: Routes = [
-{path: '', component: HomeComponent},
-{path: 'login', component: LoginComponent },
-{path: 'cart', component: CartComponent},
+  { path : '' , redirectTo : '/Home' , pathMatch : 'full' },
+  {
+    path: 'Home',
+    loadChildren: () =>
+      loadRemoteModule({
+        remoteEntry: "home",
+        remoteName: "homeApp",
+        exposedModule: "./HomeModule"
+      })
+      .then(m => m.HomeModule)
+      .catch(err => {
+        console.error('Error loading component:', err);
+        alert('Error loading component: ' + JSON.stringify(err, null, 2));
+      })
+ },
+ {
+  path: 'login',
+  loadChildren: () =>
+    loadRemoteModule({
+      remoteEntry: "manifest",
+      remoteName: "loginApp",
+      exposedModule: "./LoginModule"
+    })
+    .then(m => m.LoginModule)
+    .catch(err => {
+      console.error('Error loading component:', err);
+      alert('Error loading component: ' + JSON.stringify(err, null, 2));
+    })
+},
+{
+  path: 'cart',
+  loadChildren: () =>
+    loadRemoteModule({
+      remoteEntry: "manifest",
+      remoteName: "cartApp",
+      exposedModule: "./CartModule"
+    })
+    .then(m => m.CartModule)
+    .catch(err => {
+      console.error('Error loading component:', err);
+      alert('Error loading component: ' + JSON.stringify(err, null, 2));
+    })
+},
+
+
+
 
 ];
 

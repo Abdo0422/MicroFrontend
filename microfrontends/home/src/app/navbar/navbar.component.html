@@ -1,0 +1,16 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a href="/">Car Rental</a>
+  </div>
+  <div class="user-dropdown">
+    <button *ngIf="userRole" class="dropbtn" (click)="toggleDropdown()">
+      {{ userRole ? (userRole === 'client' ? 'Client' : 'Employee') : 'Login' }}
+    </button>
+    <div class="dropdown-content" *ngIf="userRole">
+      <a (click)="logout()">Logout</a>
+      <a href="/cart">Cart</a>
+    </div>
+  </div>
+  <button *ngIf="!userRole" class="dropbtn" (click)="gotologin()">Login</button>
+
+</nav>
