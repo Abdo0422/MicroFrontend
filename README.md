@@ -1,7 +1,3 @@
-#!/bin/bash
-
-# Create README.md file
-cat <<EOL > README.md
 # Projet Microfrontend
 
 ## Vue d'ensemble
